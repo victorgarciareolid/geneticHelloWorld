@@ -56,14 +56,13 @@ class Chromosome:
         child2_word_list = list(partner.word)
 
         for i in range(crossover):
-            if np.random.random_sample() < mutation_probability :
+            if np.random.random_sample() < mutation_probability:
                 # Mutation
                 child1_word_list[i] = random_char()
                 child2_word_list[i] = random_char()
             else:
                 child1_word_list[i] = list(partner.word)[i]
-                child1_word_list[i] = list(self.word)[i]
-
+                child2_word_list[i] = list(self.word)[i]
 
         child1.setWord("".join(child1_word_list))
         child2.setWord("".join(child2_word_list))
@@ -114,17 +113,18 @@ class Population:
 
 
 def main():
-    p = Population(5, 4, "hola", 5)
+    p = Population(100, 4, "hola", 50)
 
     print(p)
 
     s = ""
     while s != "hola":
-        p.evolve(4, 0.25)
+        p.evolve(3, 0.3)
         s = p.individuals[0].word
         print(s)
 
     print(p)
+
 
 
 if __name__ == "__main__":
